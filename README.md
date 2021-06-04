@@ -36,16 +36,6 @@ The website should fulfill the following "user stories":
 * Install the [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
 * Install [MySQL](https://dev.mysql.com/downloads/mysql/) and create a server with a password of your choosing
 
-### Creating Database
-* Enter the following in the terminal, replacing \[PASSWORD\] with the password you selected during your MySQL setup: 
-```
-mysql -uroot -p[PASSWORD]
-```
-* Enter the following command for MySQL into the terminal (for Epicodus, instructions were to use my name for the database name):
-```
-[Temp: Fill this out once I have determined database models]
-```
-
 ### Installing Application
 * Use ```git clone``` to download this repository to a local directory
 * Navigate to this local directory in your terminal
@@ -60,6 +50,15 @@ mysql -uroot -p[PASSWORD]
   }
 }
 ```
+
+### Generating Database
+* If you aren't there already, navigate to the ```/Factory``` subfolder in your terminal
+* Enter the following to generate the database using the migration:
+```
+dotnet ef database update
+```
+
+### Running Application
 * Enter ```dotnet run``` to build and run the application; or alternatively, use ```dotnet watch run``` to make the server refresh whenever a file is saved
 * The terminal will output that it is "Now listening on" a certain URL. For me this is ```http://localhost:5000```, but it could be different.
 * Navigate in your web browser to whatever URL is displayed. This will show the home page.
