@@ -9,6 +9,11 @@ namespace Factory.Controllers
 {
   public class EngineersController : Controller
   {
-
+    private FactoryContext _db;
+    
+    public EngineersController(FactoryContext db)
+    {
+      _db = db;
+    }
   }
 }
