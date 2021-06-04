@@ -7,7 +7,7 @@
 <p>Here at the factory of Dr. SillyStringz, our expert team of engineers repairs all kinds of wacky machines!</p>
 <p>Here is a listing of all of our engineers and machines:</p>
 
-<h2>Engineers</h2>
+<h2>@Html.ActionLink("Engineers", "Index", "Engineers")</h2>
 @if (ViewBag.Engineers.Count == 0)
 {
   <p>Oh wait, there are no engineers yet. We'd better hire some!</p>
@@ -19,7 +19,7 @@
 }
 </ul>
 
-<h2>Machines</h2>
+<h2>@Html.ActionLink("Machines", "Index", "Machines")</h2>
 @if (ViewBag.Machines.Count == 0)
 {
   <p>Oh wait, we don't have any machines yet. We'd better install some!</p>
