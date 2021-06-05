@@ -1,3 +1,21 @@
 @{
   Layout = "_Layout";
 }
+@using Factory.Models;
+@using System.Collections.Generic;
+@model List<Factory.Models.Engineer>;
+
+<h1>Engineers</h1>
+@if (Model.Count == 0)
+{
+  <p>Oh wait, there are no engineers yet. We'd better hire some!</p>
+}
+<ul>
+@foreach (Engineer engineer in Model)
+{
+  <li>@Html.ActionLink(engineer.Name, "Details")</li>
+}
+</ul>
+<br>
+<p>@Html.ActionLink("Hire engineer", "Create")<br>
+@Html.ActionLink("Back to home", "Index", "Home")</p>
