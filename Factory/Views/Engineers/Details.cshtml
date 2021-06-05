@@ -1,3 +1,28 @@
 @{
   Layout = "_Layout";
 }
+
+@using Factory.Models;
+@model Factory.Models.Engineer;
+
+<h1>Engineer: @Html.DisplayFor(model => model.Name)</h1>
+<h3>Employment Date: @Model.EmploymentDate.ToShortDateString()</h3>
+
+
+@if (Model.RepairLicenses.Count == 0)
+{
+  <p>This engineer has not been licensed to repair any machines yet.</p>
+}
+else
+{
+  <h3>Machines that engineer is licensed to repair:</h3>
+}
+<ul>
+@foreach (RepairLicense license in Model.RepairLicenses)
+{
+  <li>@Html.ActionLink(license.Machine.Name, "Details", new { id = license.MachineId })</li>
+}
+</ul>
+<br>
+<p>@Html.ActionLink("Back to engineers", "Index")<br>
+@Html.ActionLink("Back to home", "Index", "Home")</p>
