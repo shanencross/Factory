@@ -9,6 +9,7 @@
 @using (Html.BeginForm())
 {
   <p>Select an engineer to license</p>
+  @Html.HiddenFor(model => model.MachineId)
   @Html.DropDownList("EngineerId");
   <input type="submit" class="btn btn-default" />
 }
