@@ -19,9 +19,10 @@ else
 <ul>
 @foreach (RepairLicense license in Model.RepairLicenses)
 {
-  <li>@Html.ActionLink(license.Engineer.Name, "Details", new { id = license.EngineerId })</li>
+  <li>@Html.ActionLink(license.Engineer.Name, "Details", "Engineers", new { id = license.EngineerId })</li>
 }
 </ul>
 <br>
-<p>@Html.ActionLink("Back to machines", "Index")<br>
+<p>@Html.ActionLink("Add license from engineers", "AddEngineer", new { id = Model.MachineId })<br>
+  @Html.ActionLink("Back to machines", "Index")<br>
 @Html.ActionLink("Back to home", "Index", "Home")</p>
