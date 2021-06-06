@@ -47,9 +47,10 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Edit(Machine machine)
     {
-      
-      _db.Entry(machine).State = EntityState.Modified;
-
+      if (String.IsNullOrWhiteSpace(machine.Name) == false)
+      {
+        _db.Entry(machine).State = EntityState.Modified;
+      }
       _db.SaveChanges();
       return RedirectToAction("Details", new { id=machine.MachineId }); 
     }
