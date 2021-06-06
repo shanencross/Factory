@@ -6,6 +6,7 @@
 @model Factory.Models.Machine;
 
 <h1>Machine: @Html.DisplayFor(model => model.Name)</h1>
+<h3>Model year: @Html.DisplayFor(model => model.Year)</h3>
 <h3>Installation Date: @Model.InstallationDate.ToShortDateString()</h3>
 
 @if (Model.RepairLicenses.Count == 0)
@@ -31,5 +32,6 @@ else
 </ul>
 <br>
 <p>@Html.ActionLink("Add license from engineers", "AddEngineer", new { id = Model.MachineId })<br>
-  @Html.ActionLink("Back to machines", "Index")<br>
+@Html.ActionLink("Uninstall machine", "Delete", new { id = Model.MachineId })<br>
+@Html.ActionLink("Back to machines", "Index")<br>
 @Html.ActionLink("Back to home", "Index", "Home")</p>

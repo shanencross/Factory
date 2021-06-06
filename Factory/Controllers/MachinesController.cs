@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using System;
 using System.Linq;
 using Factory.Models;
 
@@ -29,7 +30,10 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Machine machine)
     {
-      _db.Machines.Add(machine);
+      if (String.IsNullOrWhiteSpace(machine.Name) == false)
+      {
+        _db.Machines.Add(machine);
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -69,6 +73,24 @@ namespace Factory.Controllers
       _db.RepairLicenses.Remove(thisRepairLicense);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id=machineId });
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      if (id != 0)
+      {
+        _db.Machines.Remove(thisMachine);
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }

@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer;
+
+<h1>Fire @Html.DisplayFor(model => model.Name)?</h1>
+
+<p>Are you sure you want to fire the engineer @Html.DisplayFor(model => model.Name)?</p>
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Fire engineer" class="btn btn-primary"/>
+}
+<br>
+<p>@Html.ActionLink("Back to engineer", "Details", new { id = @Model.EngineerId })<br>
+@Html.ActionLink("Back to engineers", "Index")<br>
+@Html.ActionLink("Back to engineers", "Index", "Home")</p>

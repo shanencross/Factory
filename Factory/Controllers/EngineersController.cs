@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using System;
 using System.Linq;
 using Factory.Models;
 
@@ -29,7 +30,10 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Engineer engineer)
     {
-      _db.Engineers.Add(engineer);
+      if (String.IsNullOrWhiteSpace(engineer.Name) == false)
+      {
+        _db.Engineers.Add(engineer);
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");    
     }
@@ -68,6 +72,24 @@ namespace Factory.Controllers
       _db.RepairLicenses.Remove(thisRepairLicense);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id=engineerId });
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      if (id != 0)
+      {
+        _db.Engineers.Remove(thisEngineer);
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
