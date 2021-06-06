@@ -31,7 +31,8 @@ else
 }
 </ul>
 <br>
-<p>@Html.ActionLink("Add license from engineers", "AddEngineer", new { id = Model.MachineId })<br>
+<p>@Html.ActionLink("Edit machine", "Edit", new { id = Model.MachineId })<br>
+@Html.ActionLink("Add license from engineers", "AddEngineer", new { id = Model.MachineId })<br>
 @Html.ActionLink("Uninstall machine", "Delete", new { id = Model.MachineId })<br>
 @Html.ActionLink("Back to machines", "Index")<br>
 @Html.ActionLink("Back to home", "Index", "Home")</p>

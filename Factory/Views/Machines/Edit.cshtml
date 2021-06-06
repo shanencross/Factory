@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine;
+
+<h2>Edit Machine</h2>
+
+<h4>Edit @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+  @Html.LabelFor(model => model.Name);
+  @Html.EditorFor(model => model.Name);
+  <br>
+  @Html.LabelFor(model => model.Year);
+  @Html.EditorFor(model => model.Year);
+  <br>
+  @Html.LabelFor(model => model.InstallationDate);
+  @Html.EditorFor(model => model.InstallationDate, new { htmlAttributes = new { type="date" }});
+  <br>
+  <input type="submit" value="Save" class="btn btn-primary"/>
+}
+<p>@Html.ActionLink("Back to machine", "Details", new { id = @Model.MachineId })<br>
+@Html.ActionLink("Back to machines", "Index")<br>
+@Html.ActionLink("Back to machines", "Index", "Home")</p>
