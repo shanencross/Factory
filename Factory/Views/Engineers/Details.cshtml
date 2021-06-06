@@ -21,6 +21,13 @@ else
 @foreach (RepairLicense license in Model.RepairLicenses)
 {
   <li>@Html.ActionLink(license.Machine.Name, "Details", "Machines", new { id = license.MachineId })</li>
+
+  @using (Html.BeginForm("RemoveMachine", "Engineers"))  
+  {
+    @Html.Hidden("engineerId", license.EngineerId)
+    @Html.Hidden("repairLicenseId", license.RepairLicenseId);
+    <input type="submit" value="Remove" class="btn btn-default" />
+  }
 }
 </ul>
 <br>

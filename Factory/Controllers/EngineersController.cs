@@ -60,5 +60,14 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id=engineer.EngineerId });
     }
+
+    [HttpPost]
+    public ActionResult RemoveMachine(int engineerId, int repairLicenseId)
+    {
+      RepairLicense thisRepairLicense = _db.RepairLicenses.FirstOrDefault(repairLicense => repairLicense.RepairLicenseId == repairLicenseId);
+      _db.RepairLicenses.Remove(thisRepairLicense);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id=engineerId });
+    }
   }
 }
